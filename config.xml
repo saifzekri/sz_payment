@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
 	<name>sz_payment</name>
-	<displayName><![CDATA[SZ Payment for Mo To]]></displayName>
-	<version><![CDATA[0.7.2]]></version>
+	<displayName><![CDATA[Sz Payment for Mo To]]></displayName>
+	<version><![CDATA[0.0.1]]></version>
 	<description><![CDATA[Allows customer service to login as customer without password and validate an order via MoTo (Mobile Order \ Email Order) mode Payment]]></description>
 	<author><![CDATA[Zekri]]></author>
 	<tab><![CDATA[payments_gateways]]></tab>
