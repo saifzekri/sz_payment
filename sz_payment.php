@@ -27,16 +27,12 @@
 if (!defined('_PS_VERSION_'))
 	exit;
 
-class Sz_payment extends PaymentModule
-{
-	private $_html = '';
-	private $_postErrors = array();
+class Sz_payment extends PaymentModule {
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->name = 'sz_payment';
-		$this->tab = 'back_office_features';
-		$this->version = '0.1';
+		$this->tab = 'payments_gateways';
+		$this->version = '0.0.1';
 		$this->author = 'Zekri';
 		$this->controllers = ['login','payment', 'validation'];
 		
