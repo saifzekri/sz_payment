@@ -25,30 +25,30 @@ class Sz_payment extends PaymentModule
     public function __construct()
     {
         $this->name = 'sz_payment';
-		$this->tab = 'payments_gateways';
-		$this->version = '0.0.1';
-		$this->author = 'Zekri';
-        $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
-		$this->controllers = ['login','payment', 'validation'];
-		
-		$this->bootstrap = true;
-		parent::__construct();
-
-		$this->displayName = $this->l('Sz Payment for Mo To');
-		$this->description = $this->l('Allows customer service to login as customer without password and validate an order via MoTo (Mobile Order \ Email Order) mode Payment');
+        $this->tab = 'payments_gateways';
+        $this->version = '0.0.1';
+        $this->author = 'Zekri';
+        $this->ps_versions_compliancy = ['min' => '1.7.6.0', 'max' => _PS_VERSION_];
+        $this->controllers = ['login', 'payment', 'validation'];
+        $this->bootstrap = true;
+        parent::__construct();
+        $this->displayName = $this->l('Sz Payment for Mo To');
+        $this->description = $this->l('Allows customer service to login as customer without password and validate an order via MoTo (Mobile Order \ Email Order) mode Payment');
     }
 
-	public function install()
-	{
-		if (!parent::install() || !$this->registerHook('displayAdminCustomers')
+    /**
+     * @return bool
+     */
+    public function install()
+    {
+        if (!parent::install() || !$this->registerHook('displayAdminCustomers')
             || !$this->registerHook('paymentOptions')
             || !$this->registerHook('actionEmailSendBefore')) {
             return false;
         }
         $this->setDefaults();
-		return true;
-	}
-
+        return true;
+    }
     public function uninstall()
     {
         Configuration::deleteByName('SZPAYMENT_MODE');
@@ -56,7 +56,6 @@ class Sz_payment extends PaymentModule
         Configuration::deleteByName('SZPAYMENT_ORDER_STATUS_ID');
         return parent::uninstall();
     }
-
     public function setDefaults()
     {
         $values = array();
@@ -73,7 +72,6 @@ class Sz_payment extends PaymentModule
         }
         Configuration::updateValue('SZPAYMENT_ORDER_STATUS_ID', 0);
     }
-
     public function hookDisplayAdminCustomers($request)
     {
         $customer = New CustomerCore ($request['id_customer']);
@@ -98,11 +96,10 @@ class Sz_payment extends PaymentModule
                 </div>
                 </div>';
     }
-    
-    public function makeToken($id_customer) {
+    public function makeToken($id_customer)
+    {
         return md5(_COOKIE_KEY_.$id_customer.date("Ymd"));
     }
-
     public function postProcess()
     {
         if (Tools::isSubmit('submitSzpayementConf')) {
@@ -119,12 +116,10 @@ class Sz_payment extends PaymentModule
         }
         return '';
     }
-
     public function getContent()
     {
         return $this->postProcess().$this->renderForm();
     }
-
     public function renderForm()
     {
         $fields_form = array(
@@ -178,7 +173,6 @@ class Sz_payment extends PaymentModule
         );
 
         $lang = new Language((int)Configuration::get('PS_LANG_DEFAULT'));
-
         $helper = new HelperForm();
         $helper->show_toolbar = false;
         $helper->table = $this->table;
@@ -197,11 +191,9 @@ class Sz_payment extends PaymentModule
         );
         return $helper->generateForm(array($fields_form));
     }
-
     public function getConfigFieldsValues()
     {
         $languages = Language::getLanguages(false);
-
         $fields = array();
         foreach ($languages as $lang) {
             $fields['SZPAYMENT_MODE'] = Tools::getValue('SZPAYMENT_MODE', filter_var(Configuration::get('SZPAYMENT_MODE', $lang['id_lang']), FILTER_VALIDATE_BOOLEAN));
@@ -209,11 +201,9 @@ class Sz_payment extends PaymentModule
             }
         return $fields;
     }
-
     public function hookPaymentOptions($params)
     {
         $cookie=&$this->context->cookie;
-
         if (!$this->active) {
             return;
         }
@@ -226,12 +216,10 @@ class Sz_payment extends PaymentModule
         $option = new \PrestaShop\PrestaShop\Core\Payment\PaymentOption();
         $option->setCallToActionText(Configuration::get('SZPAYMENT_FRONT_TEXT', $this->context->language->id))
             ->setAction($this->context->link->getModuleLink($this->name, 'validation', array(), true));
-
         return [
             $option
         ];
     }
-
     public function hookActionEmailSendBefore($params)
     {
         if($params['template'] === 'order_conf') {
