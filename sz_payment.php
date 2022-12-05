@@ -17,26 +17,26 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-if (!defined('_PS_VERSION_')){
+if (!defined('_PS_VERSION_')) {
     exit;
 }
 class Sz_payment extends PaymentModule
 {
-	public function __construct()
+    public function __construct()
     {
-		$this->name = 'sz_payment';
+        $this->name = 'sz_payment';
 		$this->tab = 'payments_gateways';
 		$this->version = '0.0.1';
 		$this->author = 'Zekri';
+        $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
 		$this->controllers = ['login','payment', 'validation'];
 		
 		$this->bootstrap = true;
 		parent::__construct();
 
-        $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
 		$this->displayName = $this->l('Sz Payment for Mo To');
 		$this->description = $this->l('Allows customer service to login as customer without password and validate an order via MoTo (Mobile Order \ Email Order) mode Payment');
-	}
+    }
 
 	public function install()
 	{
@@ -63,8 +63,7 @@ class Sz_payment extends PaymentModule
         foreach (Language::getLanguages(false) as $lang) {
             if ($lang['iso_code'] == 'fr') {
                 $values['SZPAYMENT_FRONT_TEXT'][$lang['id_lang']] = 'Paiement via MoTo';
-            }
-            else {
+            } else {
                 $values['SZPAYMENT_FRONT_TEXT'][$lang['id_lang']] = 'Payment by MoTo';
             }
             $values['SZPAYMENT_MODE'][$lang['id_lang']] = 0;
@@ -75,7 +74,7 @@ class Sz_payment extends PaymentModule
         Configuration::updateValue('SZPAYMENT_ORDER_STATUS_ID', 0);
     }
 
-	public function hookDisplayAdminCustomers($request)
+    public function hookDisplayAdminCustomers($request)
     {
         $customer = New CustomerCore ($request['id_customer']);
         $link = $this->context->link->getModuleLink($this->name, 'login', array('id_customer' => $customer->id, 'xtoken' => $this->makeToken($customer->id)));
