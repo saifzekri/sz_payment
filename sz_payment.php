@@ -35,8 +35,7 @@ class Sz_payment extends PaymentModule
         $this->displayName = $this->l('Sz Payment for Mo To');
         $this->description = $this->l('Allows customer service to login as customer without password and validate an order via MoTo (Mobile Order \ Email Order) mode Payment');
     }
-	public function install()
-	{
+    public function install(){
         if (!parent::install() || !$this->registerHook('displayAdminCustomers')
             || !$this->registerHook('paymentOptions')
             || !$this->registerHook('actionEmailSendBefore')) {
