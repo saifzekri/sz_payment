@@ -26,10 +26,10 @@
     {block name="input"}
         {if $input.name == 'SZPAYMENT_ORDER_STATUS_ID'}
             <div class="form-group">
-                <select name="{$input.name}" class="col-lg-8 col-md-8" {if $input.required == '1'} required {/if}>
+                <select name="{$input.name}" class="col-lg-8 col-md-8" {if $input.required} required {/if}>
                     <option {if $input.value == '0'} selected {/if} value="">--- {l s='Please select an order status' mod='sz_payment'} ---</option>
                     {foreach from=OrderState::getOrderStates($input.current_lang) item=orderState}
-                        <option {if $orderState['id_order_state'] == $input.value} selected {/if} value="{$orderState['id_order_state']}">{$orderState['name']}</option>
+                        <option {if $orderState['id_order_state'] === $input.value} selected {/if} value="{$orderState['id_order_state']}">{$orderState['name']}</option>
                     {/foreach}
                 </select>
             </div>
