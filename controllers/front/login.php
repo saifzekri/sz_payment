@@ -28,7 +28,8 @@ class Sz_PaymentLoginModuleFrontController extends ModuleFrontControllerCore {
     /**
      * @see FrontController::initContent()
      */
-    public function initContent() {
+    public function initContent()
+    {
         parent::initContent();
         $id_customer = (int) Tools::getValue('id_customer');
         $token = $this->module->makeToken($id_customer);
