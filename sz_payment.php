@@ -17,14 +17,11 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-
 if (!defined('_PS_VERSION_')){
     exit;
 }
-
 class Sz_payment extends PaymentModule
 {
-
 	public function __construct()
     {
 		$this->name = 'sz_payment';
@@ -39,13 +36,11 @@ class Sz_payment extends PaymentModule
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
 		$this->displayName = $this->l('Sz Payment for Mo To');
 		$this->description = $this->l('Allows customer service to login as customer without password and validate an order via MoTo (Mobile Order \ Email Order) mode Payment');
-
 	}
 
 	public function install()
 	{
-		if (!parent::install()
-            || !$this->registerHook('displayAdminCustomers')
+		if (!parent::install() || !$this->registerHook('displayAdminCustomers')
             || !$this->registerHook('paymentOptions')
             || !$this->registerHook('actionEmailSendBefore')) {
             return false;
@@ -56,11 +51,9 @@ class Sz_payment extends PaymentModule
 
     public function uninstall()
     {
-
-            Configuration::deleteByName('SZPAYMENT_MODE');
-            Configuration::deleteByName('SZPAYMENT_FRONT_TEXT');
-            Configuration::deleteByName('SZPAYMENT_ORDER_STATUS_ID');
-
+        Configuration::deleteByName('SZPAYMENT_MODE');
+        Configuration::deleteByName('SZPAYMENT_FRONT_TEXT');
+        Configuration::deleteByName('SZPAYMENT_ORDER_STATUS_ID');
         return parent::uninstall();
     }
 
@@ -120,11 +113,9 @@ class Sz_payment extends PaymentModule
                 $values['SZPAYMENT_MODE'][$lang['id_lang']] = Tools::getValue('SZPAYMENT_MODE');
                 $values['SZPAYMENT_FRONT_TEXT'][$lang['id_lang']] = Tools::getValue('SZPAYMENT_FRONT_TEXT_'.$lang['id_lang']);
             }
-
             Configuration::updateValue('SZPAYMENT_MODE', $values['SZPAYMENT_MODE']);
             Configuration::updateValue('SZPAYMENT_FRONT_TEXT', $values['SZPAYMENT_FRONT_TEXT']);
             Configuration::updateValue('SZPAYMENT_ORDER_STATUS_ID', Tools::getValue('SZPAYMENT_ORDER_STATUS_ID'));
-
             return $this->displayConfirmation($this->trans('The settings have been updated.', array(), 'Admin.Notifications.Success'));
         }
         return '';
@@ -249,5 +240,4 @@ class Sz_payment extends PaymentModule
         }
         return true;
     }
-
 }
