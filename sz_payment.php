@@ -89,7 +89,7 @@ class Sz_payment extends PaymentModule
                   <div class="card-body">
                     <p class="text-muted text-center">
                         <a href="' . $link . '" target="_blank" style="text-decoration: none;">
-                            <i class="material-icons d-block">lock_outline</i>' . $this->l("Login As Customer") . '
+                            <i class="material-icons d-block">lock_outline</i>'.$this->l("Login As Customer").'
                         </a>
                     </p>
                   </div>
