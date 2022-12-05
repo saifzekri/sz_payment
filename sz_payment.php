@@ -25,22 +25,20 @@ class Sz_payment extends PaymentModule
     public function __construct()
     {
         $this->name = 'sz_payment';
-		$this->tab = 'payments_gateways';
-		$this->version = '0.0.1';
-		$this->author = 'Zekri';
+        $this->tab = 'payments_gateways';
+        $this->version = '0.0.1';
+        $this->author = 'Zekri';
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
-		$this->controllers = ['login','payment', 'validation'];
-		
-		$this->bootstrap = true;
-		parent::__construct();
-
-		$this->displayName = $this->l('Sz Payment for Mo To');
-		$this->description = $this->l('Allows customer service to login as customer without password and validate an order via MoTo (Mobile Order \ Email Order) mode Payment');
+        $this->controllers = ['login','payment', 'validation'];
+        $this->bootstrap = true;
+        parent::__construct();
+        $this->displayName = $this->l('Sz Payment for Mo To');
+        $this->description = $this->l('Allows customer service to login as customer without password and validate an order via MoTo (Mobile Order \ Email Order) mode Payment');
     }
 
 	public function install()
 	{
-		if (!parent::install() || !$this->registerHook('displayAdminCustomers')
+        if (!parent::install() || !$this->registerHook('displayAdminCustomers')
             || !$this->registerHook('paymentOptions')
             || !$this->registerHook('actionEmailSendBefore')) {
             return false;
