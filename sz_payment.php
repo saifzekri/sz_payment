@@ -47,8 +47,8 @@ class Sz_payment extends PaymentModule
             return false;
         }
         $this->setDefaults();
-		return true;
-	}
+        return true;
+    }
     public function uninstall()
     {
         Configuration::deleteByName('SZPAYMENT_MODE');
