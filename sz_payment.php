@@ -18,12 +18,15 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-if (!defined('_PS_VERSION_'))
-	exit;
+if (!defined('_PS_VERSION_')){
+    exit;
+}
 
-class Sz_payment extends PaymentModule {
+class Sz_payment extends PaymentModule
+{
 
-	public function __construct() {
+	public function __construct()
+    {
 		$this->name = 'sz_payment';
 		$this->tab = 'payments_gateways';
 		$this->version = '0.0.1';
