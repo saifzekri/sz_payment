@@ -20,7 +20,7 @@ If you clone or download the module from github repository :
 
 Video demonstration - [click here](https://www.youtube.com/watch?v=KAk_aVReEZA) 
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/)](https://www.youtube.com/watch?v=KAk_aVReEZA)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/KAk_aVReEZA/0.jpg)](https://www.youtube.com/watch?v=KAk_aVReEZA)
 
 1. module installation 
 2. module testing
