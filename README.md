@@ -15,3 +15,12 @@ If you clone or download the module from github repository :
 2. Move the folder to `Prestashop_web_site/modules/`
 3. In Prestashop backoffice go to `IMPROVE | Modules | Modules catalog`
 4. Search & install SZ Payment Module
+
+## How it works ?
+
+Video demonstration - [click here](https://www.youtube.com/watch?v=KAk_aVReEZA) 
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/)](https://www.youtube.com/watch?v=KAk_aVReEZA)
+
+1. module installation 
+2. module testing
